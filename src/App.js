@@ -12,15 +12,21 @@ const hasPermission = true;
 function App() {
 
   if (user.name === "admin") {
-    console.log(user);
-    
     return hasPermission 
-      && <Login {...user} />;
+      && <Login name={user.name}>
+          <h3>Bem vindo</h3>
+          <div>
+            Olá, Usuário
+          </div>
+          <span>O que você deseja acessar?</span>
+        </Login>;
   }
 
   return (
     <div>
-      Login normal
+      <span>
+        Login normal
+      </span>
     </div>
 
   );

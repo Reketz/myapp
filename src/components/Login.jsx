@@ -1,10 +1,6 @@
-export default function Login({name, info}) {
+export default function Login({children, name}) {
   return (<div className="Container">
-    <span>
-      Acesso restrito. Você está logado como {name}!
-    </span>
-    <span>
-      {info}
-    </span>
+    <span>{name}</span>
+    {children}
   </div>)
 }
