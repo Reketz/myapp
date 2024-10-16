@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import Login from "./components/Login";
 import './App.css';
 
+const user = {
+  name: "admin",
+  password: 123321,
+  info: "Usuário desde de: 10/09/2010"
+}
+
+const hasPermission = true;
+
 function App() {
+
+  if (user.name === "admin") {
+    console.log(user);
+    
+    return hasPermission 
+      && <Login {...user} />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      Login normal
     </div>
+
   );
 }
 
