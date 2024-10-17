@@ -1,35 +1,23 @@
 import Login from "./components/Login";
 import './App.css';
 
-const user = {
-  name: "admin",
-  password: 123321,
-  info: "Usuário desde de: 10/09/2010"
-}
-
-const hasPermission = true;
+const movies = [
+  {id: 1, name: "Os vingadores"},
+  {id: 2, name: "Mundo perdido"},
+  {id: 3, name: "A volta dos que não foram"},
+  {id: 5, name: "Poeira em alto mar"},
+  {id: 6, name: "Fagmentado"},
+  {id: 7, name: "Arquivo do sétimo dia"}
+]
 
 function App() {
-
-  if (user.name === "admin") {
-    return hasPermission 
-      && <Login name={user.name}>
-          <h3>Bem vindo</h3>
-          <div>
-            Olá, Usuário
-          </div>
-          <span>O que você deseja acessar?</span>
-        </Login>;
-  }
-
-  return (
-    <div>
-      <span>
-        Login normal
-      </span>
-    </div>
-
-  );
+  return <div>
+    <ul>
+      {
+        movies.map((movie) => <li key={movie.id}>{movie.name}</li>)
+      }
+    </ul>
+  </div>
 }
 
 export default App;
