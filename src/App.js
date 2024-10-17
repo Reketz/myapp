@@ -1,22 +1,16 @@
-import Login from "./components/Login";
+import { useState } from 'react';
 import './App.css';
 
-const movies = [
-  {id: 1, name: "Os vingadores"},
-  {id: 2, name: "Mundo perdido"},
-  {id: 3, name: "A volta dos que não foram"},
-  {id: 5, name: "Poeira em alto mar"},
-  {id: 6, name: "Fagmentado"},
-  {id: 7, name: "Arquivo do sétimo dia"}
-]
-
 function App() {
-  return <div>
-    <ul>
-      {
-        movies.map((movie) => <li key={movie.id}>{movie.name}</li>)
-      }
-    </ul>
+
+  const [count, setCount] = useState(0);
+  
+  return <div className='Container'>
+    {count}
+    <button 
+      className='Button' 
+      onClick={() => setCount(count + 1)} 
+      >+</button>
   </div>
 }
 

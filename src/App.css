@@ -8,6 +8,16 @@ body {
   justify-content: center;
 }
 
+.Button {
+  text-decoration: none;
+  background-color: #243555;
+  width: 5rem;
+  padding: 20px;
+  margin-top: 2rem;
+  font-size: 42px;
+  color: white;
+}
+
 .Container {
   height: 400px;
   width: 400px;
@@ -17,6 +27,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  font-size: 42px;
 }
 
 .App {
