@@ -1,43 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';  
 import './App.css';
-import Box from './components/Button';
-
-const photo = {
-  name: 'Homenaje a la Neurocirugía',
-  artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
-}
+import Home from './page/Home';
 
 function App() {
 
-  const [input, setInput] = useState('');
-  const [photoState, setPhotoState] = useState(photo);
+  const [posts, setPosts] = useState([]);
 
-  function handleUpdate() {
-    setPhotoState({...photoState, novo: input});
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('Esperando...');
+
+      fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar: ${response.status}`);
+        }
+
+        response.json().then((jsonFormatado) => {
+          console.log(jsonFormatado);
+          setPosts(jsonFormatado);
+        })
+      })
+    }, 2000);
+    
+  }, []);
+
+  if(!posts || posts.length === 0) {
+    return <h2>Not found!</h2>
   }
-
-  function handleChange(event) {
-    setInput(event.target.value);
-  }
-
 
   return (
     <>
-    <input type="text" name="text" value={input} onChange={handleChange} />
-    <div style={{display: "flex", flexDirection: "column"}}>
-      <span>{photoState.name}</span>
-      <span>{photoState.artist}</span>
-      <span>{photoState.description}</span>
-      {photoState.novo && <span>{photoState.novo}</span>}
-    </div>
-    <button type="button" onClick={handleUpdate}>
-      atualizar descrição
-    </button>
-
-  </>
+      <Home posts={posts} />
+    </>
   )
 }
 
