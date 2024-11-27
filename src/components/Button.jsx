@@ -1,3 +1,8 @@
-export default function Box({ count, setCount }) {
-  return null;
+export default function Button({ children, onClick }) {
+
+  return (
+    <button className="Button" onClick={onClick}>
+      {children}
+    </button>
+  );
 }

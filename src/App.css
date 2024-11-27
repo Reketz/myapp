@@ -8,26 +8,58 @@ body {
   justify-content: center;
 }
 
+.Theme-Dark {
+  color: white;
+  background-color: black;
+}
+
+.Theme-Light {
+  color: black;
+  background-color: white;
+}
+
 .Button {
   text-decoration: none;
+  border: none;
   background-color: #243555;
-  width: 5rem;
+  width: 8rem;
   padding: 20px;
+  margin: 10px;
   margin-top: 2rem;
-  font-size: 42px;
   color: white;
+}
+
+.Button-Dark {
+  text-decoration: none;
+  border: none;
+  background-color: #243555;
+  width: 8rem;
+  padding: 20px;
+  margin: 10px;
+  margin-top: 2rem;
+  color: white;
+}
+
+.Button-Light {
+  text-decoration: none;
+  border: none;
+  background-color: white;
+  width: 8rem;
+  padding: 20px;
+  margin: 10px;
+  margin-top: 2rem;
+  color: #243555;
 }
 
 .Container {
   height: 400px;
   width: 400px;
-  background-color: #61dafb;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  font-size: 42px;
+  border: 1px solid black;
 }
 
 .App {
