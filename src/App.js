@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';  
+import { useCallback, useEffect, useState } from 'react';  
 import './App.css';
 import Home from './page/Home';
 
@@ -6,24 +6,24 @@ function App() {
 
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      console.log('Esperando...');
+  const carregar = useCallback(() => fetch('https://jsonplaceholder.typicode.com/posts')
+    .then((response) => {
+      console.log('Testando...');
+      
+      if (!response.ok) {
+        throw new Error(`Erro ao buscar: ${response.status}`);
+      }
 
-      fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Erro ao buscar: ${response.status}`);
-        }
 
-        response.json().then((jsonFormatado) => {
-          console.log(jsonFormatado);
-          setPosts(jsonFormatado);
-        })
+      response.json().then((jsonFormatado) => {
+        console.log(jsonFormatado);
+        setPosts(jsonFormatado);
       })
-    }, 2000);
-    
-  }, []);
+    }), []);
+
+  useEffect(() => {
+    carregar();
+  }, [carregar]);
 
   if(!posts || posts.length === 0) {
     return <h2>Not found!</h2>
@@ -31,6 +31,7 @@ function App() {
 
   return (
     <>
+      <h1 onClick={() => console.log('clicou')}>titulo</h1>
       <Home posts={posts} />
     </>
   )

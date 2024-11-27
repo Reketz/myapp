@@ -2,10 +2,12 @@ import Card from "../components/Card";
 
 export default function Home ({posts}) {
 
-  return (<div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-    <div className="row">
+  return (
+  <div >
+    <button onClick={() => alert('Clicou')}>Menu</button>
+    <div>
       {posts.map((post) => {
-        return <Card {...post} />
+        return <p key={post.id}>{post.title}</p>
       })}
     </div>
   </div>);
