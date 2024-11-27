@@ -1,29 +1,30 @@
-import Login from "./components/Login";
-import './App.css';
+import { useReducer, useState } from 'react';
 
-const user = {
-  name: "admin",
-  password: 123321,
-  info: "Usuário desde de: 10/09/2010"
+function reducer(state, action) {
+  if (action.type === 'add') {
+    return [...state, action.value];
+  }
+  throw Error('Unknown action.');
 }
 
-const hasPermission = true;
-
-function App() {
-
-  if (user.name === "admin") {
-    console.log(user);
-    
-    return hasPermission 
-      && <Login {...user} />;
-  }
+export default function Counter() {
+  const [state, dispatch] = useReducer(reducer, ["teste"]);
+  const [value, setValue] = useState('');
 
   return (
     <div>
-      Login normal
+      <input type="text" name="text" value={value} 
+        onChange={
+          (evt) => {
+            setValue(evt.target.value)
+          }
+          } />
+      <button onClick={() => {
+        dispatch({ type: 'add', value })
+      }}>
+        Add
+      </button>
+      {state.map(item => <li>{item}</li>)}
     </div>
-
   );
 }
-
-export default App;
