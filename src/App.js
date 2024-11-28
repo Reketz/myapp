@@ -1,30 +1,21 @@
-import { useReducer, useState } from 'react';
+import { createContext, useState } from 'react';  
+import './App.css';
+import Login from './page/Login';
+import Button from './components/Button';
 
-function reducer(state, action) {
-  if (action.type === 'add') {
-    return [...state, action.value];
-  }
-  throw Error('Unknown action.');
-}
+export const ThemeContext = createContext(null);
 
-export default function Counter() {
-  const [state, dispatch] = useReducer(reducer, ["teste"]);
-  const [value, setValue] = useState('');
+function App() {
+  const [theme, setTheme] = useState('Dark');
 
   return (
-    <div>
-      <input type="text" name="text" value={value} 
-        onChange={
-          (evt) => {
-            setValue(evt.target.value)
-          }
-          } />
-      <button onClick={() => {
-        dispatch({ type: 'add', value })
-      }}>
-        Add
-      </button>
-      {state.map(item => <li>{item}</li>)}
-    </div>
+    <>
+      <ThemeContext.Provider value={theme}>
+        <Login />  
+      </ThemeContext.Provider>
+      <Button onClick={() => {
+        setTheme(theme === 'Dark' ? 'Light' : 'Dark');
+      }} />
+    </>
   );
 }
